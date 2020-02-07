@@ -118,7 +118,7 @@ n_blocks_gen = 16
 
 path_train = cwd + '/dataset/train/'
 # path_train = 'dataset/train/'
-epochs = 1000
+epochs = 30
 
 #Set True to train using combined perceptual and MSSSIM loss
 MSSSIM = False
@@ -323,8 +323,8 @@ def save_all_weights(d, g, s, epoch_number, current_loss):
     save_dir = os.path.join('GAN/', '{}{}'.format(now.month, now.day))
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
-    if epoch_number > 800 and epoch_number % 20 == 0:
-        g.save_weights(os.path.join(save_dir, 'generator_{}_{}.h5'.format(epoch_number, current_loss)), True)
+    # if epoch_number > 800 and epoch_number % 20 == 0:
+    g.save_weights(os.path.join(save_dir, 'generator_{}_{}.h5'.format(epoch_number, current_loss)), True)
     # d.save_weights(os.path.join(save_dir, 'discriminator_{}.h5'.format(epoch_number)), True)
     # s.save_weights(os.path.join(save_dir, 'siamese_{}.h5'.format(epoch_number)), True)
 
