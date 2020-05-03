@@ -30,6 +30,27 @@ image16 = path + 'results16.png'
 image17 = path + 'results17.png'
 image18 = path + 'results18.png'
 
+input_image1  = path + 'raw1.png'
+input_image2  = path + 'raw2.png'
+input_image3  = path + 'raw3.png'
+input_image4  = path + 'raw4.png'
+input_image5  = path + 'raw5.png'
+input_image6  = path + 'raw6.png'
+input_image7  = path + 'raw7.png'
+input_image8  = path + 'raw8.png'
+input_image9  = path + 'raw9.png'
+input_image10 = path + 'raw10.png'
+input_image11 = path + 'raw11.png'
+input_image12 = path + 'raw12.png'
+input_image13 = path + 'raw13.png'
+input_image14 = path + 'raw14.png'
+input_image15 = path + 'raw15.png'
+input_image16 = path + 'raw16.png'
+input_image17 = path + 'raw17.png'
+input_image18 = path + 'raw18.png'
+
+
+
 
 def std_mean_back(a): 
     a = np.asanyarray(a) 
@@ -46,6 +67,33 @@ def std_mean_fore(a, b, c):
     m = np.mean(d) 
     sd = np.std(d) 
     return m, sd
+
+def texture_preservation(im, input_im, box1, box2, box3, box4):
+	a=im.crop(box1)
+	b=im.crop(box2)
+	c=im.crop(box3)
+	d=im.crop(box4)
+	
+	a1=input_im.crop(box1)
+	b1=input_im.crop(box2)
+	c1=input_im.crop(box3)
+	d1=input_im.crop(box4)
+
+	m1, std1 = std_mean_back(a);
+	m2, std2 = std_mean_back(b);
+	m3, std3 = std_mean_back(c);
+	m4, std4 = std_mean_back(d);
+	m11, std11 = std_mean_back(a1);
+	m12, std12 = std_mean_back(b1);
+	m13, std13 = std_mean_back(c1);
+	m14, std14 = std_mean_back(d1);
+	tp1 = (std1/std11) * np.sqrt((m1/m11))
+	tp2 = (std2/std12) * np.sqrt((m1/m12))
+	tp3 = (std3/std13) * np.sqrt((m1/m13))
+	tp4 = (std4/std14) * np.sqrt((m1/m14))
+	return (tp1+tp2+tp3+tp4)/4
+
+
 
 def msr_cnr(im, box1, box2, box3, box4):
 	im_back=im.crop(box1)
@@ -71,6 +119,7 @@ def msr_cnr(im, box1, box2, box3, box4):
 
 msr = []
 cnr = []
+tp = []
 
 im=Image.open(image1)
 # im.show()
@@ -90,7 +139,9 @@ box4=(700,110,820,170)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image1)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 im=Image.open(image2)
 # im.show()
@@ -110,6 +161,9 @@ box4=(685,100,805,150)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
+input_im=Image.open(input_image2)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 
 
@@ -131,7 +185,9 @@ box4=(710,210,830,265)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image3)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 im=Image.open(image4)
 # im.show()
@@ -151,7 +207,9 @@ box4=(675,85,800,135)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image4)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 
 
@@ -174,7 +232,9 @@ box4=(700,105,820,155)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image5)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 
 im=Image.open(image6)
@@ -195,7 +255,9 @@ box4=(665,90,800,140)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image6)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 
 
@@ -221,7 +283,9 @@ box4=(700,110,835,175)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image7)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 
 
@@ -243,7 +307,9 @@ box4=(690,95,810,135)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image8)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 
 
@@ -265,7 +331,9 @@ box4=(640,130,760,180)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image9)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 
 im=Image.open(image10)
@@ -286,7 +354,9 @@ box4=(635,65,755,120)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image10)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 
 im=Image.open(image11)
@@ -307,7 +377,9 @@ box4=(685,135,805,185)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image11)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 im=Image.open(image12)
 # im.show()
@@ -327,7 +399,9 @@ box4=(600,90,720,140)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image12)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 
 im=Image.open(image13)
@@ -348,7 +422,9 @@ box4=(700,70,820,120)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image13)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 
 im=Image.open(image14)
@@ -369,7 +445,9 @@ box4=(660,80,780,130)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image14)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 
 im=Image.open(image15)
@@ -390,7 +468,9 @@ box4=(735,160,850,210)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image15)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 
 im=Image.open(image16)
@@ -411,7 +491,9 @@ box4=(695,110,820,160)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image16)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 
 im=Image.open(image17)
@@ -432,7 +514,9 @@ box4=(660,110,780,160)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
-
+input_im=Image.open(input_image17)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 
 
@@ -454,9 +538,14 @@ box4=(655,120,780,170)
 m, c = msr_cnr(im, box1, box2, box3, box4)
 msr.append(m)
 cnr.append(c)
+input_im=Image.open(input_image18)
+t = texture_preservation(im, input_im, box1, box2, box3, box4)
+tp.append(t)
 
 
 print(msr)
 print(cnr)
+print(tp)
 print("MSR = " + str(np.array(msr).mean()) + "\n")
 print("CNR = " + str(np.array(cnr).mean()) + "\n")
+print("tp = " + str(np.array(tp).mean()) + "\n")
