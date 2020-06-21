@@ -50,5 +50,12 @@ By default the models are trained with combined perceptual and MSSSIM loss
 
 
 ### Hardware used 
-* 12 GB GPU
+* 12 GB GPU NVIDIA GeForce 1080 Ti
 * 32 GB RAM
+
+### Reference Work
+Links for the models which are used for comaparison.
+
+MSBTD - http://people.duke.edu/~sf59/software.html
+MIFCN - https://github.com/ashkan-abbasi66/MIFCN
+Shared Encoder - https://github.com/adigasu/SE_Despeckling
